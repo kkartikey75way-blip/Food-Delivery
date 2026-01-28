@@ -1,73 +1,127 @@
-# React + TypeScript + Vite
+# 🍔 FoodHub – Food Delivery Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FoodHub is a **full-stack food delivery web application** built using **React (Vite + TypeScript)** for the frontend and **FastAPI** for the backend.  
+It supports **user authentication, cart management, checkout, order history, and real-time order tracking** using **WebSockets**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+### 🧑‍💻 User Features
+- User authentication (Login / Register)
+- Browse restaurants and menus
+- Add items to cart with quantity management
+- Dynamic price calculation with discounts
+- Secure checkout (Stripe – dummy integration)
+- Order history
+- **Real-time order tracking**
+- Logout & session handling
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🔔 Notifications
+- Login success notification
+- Add-to-cart notification
+- Order confirmation notification
+- Live delivery status updates (WebSocket)
 
-## Expanding the ESLint configuration
+### 📦 Order Tracking (Real-Time)
+- Order Confirmed
+- Preparing Food
+- Out for Delivery
+- Delivered
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Frontend
+- React + TypeScript
+- Vite
+- Redux Toolkit
+- React Router
+- React Hook Form + Zod
+- Bootstrap 5
+- Stripe (dummy payments)
+- WebSocket (for tracking)
+- React Icons
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Backend
+- FastAPI
+- WebSockets
+- Uvicorn
+- Python 3.10+
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📂 Project Structure
+Inside src:-
+├── App.tsx
+├── assets
+│   └── react.svg
+├── components
+│   ├── CategoryCard.tsx
+│   ├── FeaturedRestaurantsCard.tsx
+│   ├── Footer.tsx
+│   ├── Header.tsx
+│   ├── HowItWorksCard.tsx
+│   ├── InfoBadge.tsx
+│   ├── MenuCard.tsx
+│   └── ToastContainer.tsx
+├── data
+│   ├── categories.ts
+│   └── homedata.ts
+├── layouts
+│   ├── AuthLayout.tsx
+│   └── MainLayout.tsx
+├── main.tsx
+├── pages
+│   ├── CartPage.tsx
+│   ├── CheckoutPage.tsx
+│   ├── HomePage.tsx
+│   ├── LoginPage.tsx
+│   ├── NotFoundPage.tsx
+│   ├── OrderDetailPage.tsx
+│   ├── OrdersPage.tsx
+│   ├── OrderTrackingPage.tsx
+│   ├── ProfilePage.tsx
+│   ├── RegisterPage.tsx
+│   ├── RestaurantDetailPage.tsx
+│   └── RestaurantsPage.tsx
+├── routes
+│   ├── index.tsx
+│   └── ProtectedRoute.tsx
+├── services
+│   ├── api.ts
+│   └── baseQuery.ts
+├── store
+│   ├── reducer
+│   │   ├── authReducer.ts
+│   │   ├── cartReducer.ts
+│   │   ├── notificationReducer.ts
+│   │   └── orderReducer.ts
+│   └── store.ts
+├── styles.css
+├── theme.d.ts
+├── Themes.ts
+├── types.ts
+└── utils
+    └── calculatePrice.ts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/your-username/foodhub.git
+cd foodhub
+
+##  Frontend Setup
+cd frontend
+npm install
+npm run dev
+
+## Test Card Details (Stripe – Demo)
+Card Number: 4242 4242 4242 4242
+Expiry: Any future date
+CVV: Any 3 digits
