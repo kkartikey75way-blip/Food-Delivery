@@ -12,5 +12,12 @@ export type User = {
   email: string;
 };
 
+export interface Pricing {
+  basePrice: number;
+  discountPercent?: number;
+  deliveryFee: number;
+  taxPercent: number;
+}
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

@@ -11,6 +11,7 @@ import CartPage from '../pages/CartPage';
 import CheckoutPage from '../pages/CheckoutPage';
 import OrdersPage from '../pages/OrdersPage';
 import OrderDetailPage from '../pages/OrderDetailPage';
+import OrderTrackingPage from '../pages/OrderTrackingPage';
 import ProfilePage from '../pages/ProfilePage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
@@ -53,11 +54,20 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      
       {
         path: 'orders/:id',
         element: (
           <ProtectedRoute>
             <OrderDetailPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'orders/:id/track',
+        element: (
+          <ProtectedRoute>
+            <OrderTrackingPage />
           </ProtectedRoute>
         ),
       },

@@ -31,6 +31,7 @@ export default function RestaurantDetailPage() {
         name: "Margherita Pizza",
         description: "Classic tomato, mozzarella, basil",
         price: 12.99,
+        discount: 20, 
         image:
           "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400",
       },
@@ -39,6 +40,7 @@ export default function RestaurantDetailPage() {
         name: "Spaghetti Carbonara",
         description: "Creamy pasta with bacon and parmesan",
         price: 14.99,
+        discount: 10, 
         image:
           "https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400",
       },
@@ -47,6 +49,7 @@ export default function RestaurantDetailPage() {
         name: "Caesar Salad",
         description: "Romaine lettuce, croutons, parmesan",
         price: 8.99,
+        discount: 10, 
         image:
           "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400",
       },
@@ -55,10 +58,12 @@ export default function RestaurantDetailPage() {
         name: "Tiramisu",
         description: "Classic Italian dessert",
         price: 6.99,
+        discount: 30,
         image:
           "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400",
       },
     ]);
+
   }, [id]);
 
   if (!restaurant) {

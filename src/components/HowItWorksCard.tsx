@@ -1,13 +1,15 @@
+import type { IconType } from "react-icons";
+
 interface Props {
   title: string;
   description: string;
-  icon: string;
+  icon: IconType;
 }
 
 export default function HowItWorksCard({
   title,
   description,
-  icon,
+  icon: Icon,
 }: Props) {
   return (
     <div className="col-md-4 text-center">
@@ -17,11 +19,11 @@ export default function HowItWorksCard({
           width: 80,
           height: 80,
           background: "linear-gradient(135deg, #ff6b35, #6f42c1)",
-          fontSize: "2rem",
         }}
       >
-        {icon}
+        <Icon size={36} className="text-white" />
       </div>
+
       <h5 className="fw-bold">{title}</h5>
       <p className="text-muted">{description}</p>
     </div>

@@ -4,6 +4,8 @@ import { z } from 'zod';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/reducer/authReducer';
+import { showNotification } from "../store/reducer/notificationReducer";
+
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -27,7 +29,7 @@ export default function LoginPage() {
     try {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      
+
       // Mock user data
       const mockUser = {
         id: '1',
@@ -40,7 +42,16 @@ export default function LoginPage() {
       const mockToken = 'mock-jwt-token-' + Date.now();
 
       dispatch(setUser({ user: mockUser, token: mockToken }));
-      navigate('/');
+
+      dispatch(
+        showNotification({
+          message: "Login successful . Welcome back!!",
+          type: "success",
+        })
+      );
+
+      navigate("/");
+
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -67,9 +78,8 @@ export default function LoginPage() {
                   </label>
                   <input
                     type="email"
-                    className={`form-control form-control-lg ${
-                      errors.email ? "is-invalid" : ""
-                    }`}
+                    className={`form-control form-control-lg ${errors.email ? "is-invalid" : ""
+                      }`}
                     placeholder="you@example.com"
                     {...register("email")}
                   />
@@ -87,9 +97,8 @@ export default function LoginPage() {
                   </label>
                   <input
                     type="password"
-                    className={`form-control form-control-lg ${
-                      errors.password ? "is-invalid" : ""
-                    }`}
+                    className={`form-control form-control-lg ${errors.password ? "is-invalid" : ""
+                      }`}
                     placeholder="Enter password"
                     {...register("password")}
                   />

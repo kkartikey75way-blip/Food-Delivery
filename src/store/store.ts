@@ -2,12 +2,15 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './reducer/authReducer';
 import cartReducer from './reducer/cartReducer';
 import ordersReducer from './reducer/orderReducer';
+import  Notification  from './reducer/notificationReducer';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     cart: cartReducer,
     orders: ordersReducer,
+    notification: Notification,
+
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

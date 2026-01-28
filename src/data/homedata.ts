@@ -1,4 +1,6 @@
 // Featured restaurants
+
+
 export const featuredRestaurants = [
   {
     id: "1",
@@ -8,7 +10,8 @@ export const featuredRestaurants = [
     rating: 4.8,
     cuisine: "Italian",
     deliveryTime: "25-35 min",
-    deliveryFee: 2.99,
+    deliveryFee: 20,
+    discount: 20, 
   },
   {
     id: "2",
@@ -18,7 +21,8 @@ export const featuredRestaurants = [
     rating: 4.9,
     cuisine: "Japanese",
     deliveryTime: "30-40 min",
-    deliveryFee: 3.99,
+    deliveryFee: 30,
+    discount: 15, 
   },
   {
     id: "3",
@@ -28,7 +32,8 @@ export const featuredRestaurants = [
     rating: 4.7,
     cuisine: "American",
     deliveryTime: "20-30 min",
-    deliveryFee: 1.99,
+    deliveryFee: 10,
+    discount: 10, 
   },
   {
     id: "4",
@@ -38,9 +43,11 @@ export const featuredRestaurants = [
     rating: 4.6,
     cuisine: "Indian",
     deliveryTime: "35-45 min",
-    deliveryFee: 2.49,
+    deliveryFee: 20,
+    discount: 10, 
   },
 ];
+
 
 // Categories
 export const categories = [
@@ -78,20 +85,22 @@ export const categories = [
 
 
 // How it works
+import { FaSearch, FaShoppingCart, FaTruck } from "react-icons/fa";
+
 export const howItWorks = [
   {
     title: "Choose Your Meal",
     description: "Browse restaurants and select your favorite dishes",
-    icon: "🔍",
+    icon: FaSearch,
   },
   {
     title: "Place Your Order",
     description: "Add items to cart and checkout securely",
-    icon: "🛒",
+    icon: FaShoppingCart,
   },
   {
     title: "Get Delivery",
     description: "Track your order and enjoy fresh food at your door",
-    icon: "🚚",
+    icon: FaTruck,
   },
 ];

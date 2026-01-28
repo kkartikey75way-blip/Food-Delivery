@@ -17,12 +17,13 @@ export default function OrdersPage() {
     cancelled: { label: "CANCELLED", className: "bg-danger" },
   };
 
+  // EMPTY STATE
   if (orders.length === 0) {
     return (
-      <div className="container py-5 text-center">
-        <h3>No orders yet 🍽️</h3>
-        <Link to="/restaurants" className="btn btn-primary mt-3">
-          Order Now
+      <div className="container py-5 d-flex flex-column align-items-center justify-content-center">
+        <h3 className="fw-semibold mb-3">No orders yet</h3>
+        <Link to="/restaurants" className="btn btn-primary">
+          Browse Restaurants
         </Link>
       </div>
     );
@@ -30,38 +31,37 @@ export default function OrdersPage() {
 
   return (
     <div className="container py-5">
-      <h1 className="fw-bold display-5 mb-4">Your Orders</h1>
+      <h1 className="fw-bold display-6 mb-4">Your Orders</h1>
 
-      <div className="d-flex flex-column gap-3">
+      <div className="d-flex flex-column gap-4">
         {orders.map((order) => (
-          <Link
+          <div
             key={order.id}
-            to={`/orders/${order.id}`}
-            className="card text-decoration-none text-dark shadow-sm border-0"
+            className="card shadow-sm border-0"
           >
             <div className="card-body">
-              {/* Header */}
+              {/* HEADER */}
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <div>
                   <h5 className="fw-semibold mb-1">
                     {order.restaurant}
                   </h5>
                   <small className="text-muted">
-                    Order #{order.id}
+                    Order ID: {order.id}
                   </small>
                 </div>
 
                 <span
                   className={`badge ${
-                    statusMap[order.status].className
+                    statusMap[order.status]?.className
                   }`}
                 >
-                  {statusMap[order.status].label}
+                  {statusMap[order.status]?.label}
                 </span>
               </div>
 
-              {/* Meta */}
-              <div className="row text-muted small">
+              {/* META INFO */}
+              <div className="row text-muted small mb-3">
                 <div className="col-md-4">
                   <strong>Date:</strong> {order.date}
                 </div>
@@ -71,12 +71,29 @@ export default function OrdersPage() {
                 <div className="col-md-4">
                   <strong>Total:</strong>{" "}
                   <span className="fw-semibold text-primary">
-                    ${order.total.toFixed(2)}
+                    Rs.{order.total.toFixed(2)}
                   </span>
                 </div>
               </div>
+
+              {/* ACTION BUTTONS */}
+              <div className="d-flex gap-2">
+                <Link
+                  to={`/orders/${order.id}`}
+                  className="btn btn-outline-secondary btn-sm"
+                >
+                  View Details
+                </Link>
+
+                <Link
+                  to={`/orders/${order.id}/track`}
+                  className="btn btn-outline-primary btn-sm"
+                >
+                  Track Order
+                </Link>
+              </div>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

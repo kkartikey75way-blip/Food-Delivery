@@ -83,7 +83,7 @@ export default function RestaurantsPage() {
                   <div className="d-flex justify-content-between align-items-center small">
                     <span>{restaurant.deliveryTime}</span>
                     <span className="fw-semibold text-primary">
-                      ${restaurant.deliveryFee.toFixed(2)} delivery
+                      Rs.{restaurant.deliveryFee.toFixed(2)} delivery
                     </span>
                   </div>
                 </div>

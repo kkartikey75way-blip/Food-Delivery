@@ -13,7 +13,9 @@ import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../store/store";
 import { clearCart } from "../store/reducer/cartReducer";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { showNotification } from "../store/reducer/notificationReducer";
+import { addOrder } from "../store/reducer/orderReducer";
 // ================= STRIPE =================
 const stripePromise = loadStripe(
   import.meta.env.VITE_STRIPE_PUBLIC_KEY || "pk_test_mock"
@@ -49,25 +51,56 @@ function CheckoutForm({ total }: { total: number }) {
     resolver: zodResolver(checkoutSchema),
   });
 
+  const navigate = useNavigate();
+
   const onSubmit = async () => {
-    if (!stripe || !elements || !cardComplete) return;
+  if (!stripe || !elements || !cardComplete) return;
 
-    setProcessing(true);
+  setProcessing(true);
 
-    try {
-      // 🔴 DEMO PAYMENT (NO BACKEND)
-      await new Promise((r) => setTimeout(r, 2000));
+  try {
+    await new Promise((r) => setTimeout(r, 2000));
 
-      dispatch(clearCart());
+    const orderId = "ORD" + Date.now();
 
-      alert(`Order placed successfully! Total: ₹${total.toFixed(2)}`);
-      window.location.href = "/orders";
-    } catch (err) {
-      console.error("Payment failed:", err);
-    } finally {
-      setProcessing(false);
-    }
-  };
+    // CREATE ORDER
+    dispatch(
+      addOrder({
+        id: orderId,
+        restaurant: "The Golden Spoon",
+        status: "preparing",
+        items: [],
+        total,
+        date: new Date().toISOString().split("T")[0],
+      })
+    );
+
+    // CLEAR CART
+    dispatch(clearCart());
+
+    // SHOW NOTIFICATION
+    dispatch(
+      showNotification({
+        message: "Order placed successfully 🎉",
+        type: "success",
+      })
+    );
+
+    // 4️⃣ NAVIGATE TO TRACKING
+    navigate(`/orders/${orderId}/track`);
+  } catch (err) {
+    dispatch(
+      showNotification({
+        message: "Payment failed. Try again",
+        type: "error",
+      })
+    );
+  } finally {
+    setProcessing(false);
+  }
+};
+
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
