@@ -10,8 +10,7 @@ Thumbs.db
 # ENV FILES (SECRETS)
 
 .env
-.env.*
-!.env.example
+
 
 
 # NODE / FRONTEND (React + Vite)
