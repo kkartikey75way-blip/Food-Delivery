@@ -3,6 +3,8 @@
 FoodHub is a **full-stack food delivery web application** built using **React (Vite + TypeScript)** for the frontend and **FastAPI** for the backend.  
 It supports **user authentication, cart management, checkout, order history, and real-time order tracking** using **WebSockets**.
 
+Video Demo Link - https://drive.google.com/file/d/13FFti_PkDbpYgL4G_H621lTrgdYckl_g/view?usp=sharing
+
 ---
 
 ## 🚀 Features
